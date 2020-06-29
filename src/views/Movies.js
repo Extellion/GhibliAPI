@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { getMovies } from "../redux/actions/movies";
+import { NavLink } from "react-router-dom";
 
 class Movies extends React.Component {
   constructor(props) {
@@ -22,7 +23,24 @@ class Movies extends React.Component {
   render() {
     const { movies } = this.props;
 
-    return <div>Movies</div>;
+    return (
+      <div>
+        <h1>Movies</h1>
+        <ul>
+          {movies &&
+            movies.length > 0 &&
+            movies.map((movie, index) => {
+              return (
+                <li key={index}>
+                  <h3>
+                    <NavLink to={`movie/${movie.id}`}>{movie.title}</NavLink>
+                  </h3>
+                </li>
+              );
+            })}
+        </ul>
+      </div>
+    );
   }
 }
 
