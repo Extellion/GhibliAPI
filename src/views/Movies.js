@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Children } from "react";
 import { connect } from "react-redux";
 
 import { getMovies } from "../redux/actions/movies";
@@ -7,6 +7,10 @@ import { NavLink } from "react-router-dom";
 class Movies extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      movies: [],
+    };
   }
 
   componentDidMount() {
@@ -20,8 +24,26 @@ class Movies extends React.Component {
     getMovies();
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if ((prevProps && prevProps.movies) !== (this.props && this.props.movies)) {
+      this.setState({
+        movies: this.props.movies,
+      });
+    }
+  }
+
+  deleteMovie(index) {
+    if (index) {
+      const { movies } = this.state;
+      const formattedMovies = movies.slice(0, index).concat(movies.slice(index + 1));
+      this.setState({
+        movies: formattedMovies,
+      });
+    }
+  }
+
   render() {
-    const { movies } = this.props;
+    const { movies } = this.state;
 
     return (
       <div>
@@ -32,6 +54,7 @@ class Movies extends React.Component {
             movies.map((movie, index) => {
               return (
                 <li key={index}>
+                  <button onClick={() => this.deleteMovie(index)}>delete</button>
                   <h3>
                     <NavLink to={`movie/${movie.id}`}>{movie.title}</NavLink>
                   </h3>
