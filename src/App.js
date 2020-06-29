@@ -3,8 +3,8 @@ import { BrowserRouter, Route } from "react-router-dom";
 
 import logo from "./logo.svg";
 import "./App.css";
-import Movies from "./views/Movies";
-import Movie from "./views/Movie";
+import Movies from "./views/Movies/Movies";
+import Movie from "./views/Movies/Movie";
 
 function App() {
   return (

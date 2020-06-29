@@ -4,8 +4,8 @@ import renderer from "react-test-renderer";
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import { applyMiddleware } from "redux";
-import { callAPIMiddleware } from "../redux/middleware/callAPI";
-import reducers from "../redux/reducers/reducers";
+import { callAPIMiddleware } from "../../redux/middleware/callAPI";
+import reducers from "../../redux/reducers/reducers";
 
 import Movies from "./Movies";
 

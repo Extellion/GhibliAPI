@@ -1,7 +1,7 @@
 import React, { Children } from "react";
 import { connect } from "react-redux";
 
-import { getMovies } from "../redux/actions/movies";
+import { getMovies } from "../../redux/actions/movies";
 import { NavLink } from "react-router-dom";
 
 class Movies extends React.Component {
