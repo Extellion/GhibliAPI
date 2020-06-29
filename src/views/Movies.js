@@ -42,12 +42,21 @@ class Movies extends React.Component {
     }
   }
 
+  shuffleMovies() {
+    const { movies } = this.state;
+    const shuffledMovies = movies.sort(() => Math.random() - 0.5);
+    this.setState({
+      movies: shuffledMovies,
+    });
+  }
+
   render() {
     const { movies } = this.state;
 
     return (
       <div>
         <h1>Movies</h1>
+        <button onClick={() => this.shuffleMovies()}>shuffle</button>
         <ul>
           {movies &&
             movies.length > 0 &&
